@@ -11,7 +11,8 @@ public class Rocketman : MonoBehaviour
 
     public static State RocketmanCurrentState;
     public static ThrowPower RocketmanThrowPower;
-    
+
+    public GameObject stickMesh;
 
     public enum State
     {
@@ -45,6 +46,56 @@ public class Rocketman : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (RocketmanCurrentState == State.Still)
+        {
+            RocketmanThrowPower = ThrowPower.NoPower;
+            moveRocketmanScript.enabled = true;
+            throwRocketmanScript.enabled = false;
+        }
+        else if (RocketmanCurrentState == State.Thrown)
+        {
+            
+            moveRocketmanScript.enabled = false;
+            throwRocketmanScript.enabled = true;
+            //stickMesh.SetActive(false);
+        }
+        else if (RocketmanCurrentState == State.Falling)
+        {
+            RocketmanThrowPower = ThrowPower.NoPower;
+            moveRocketmanScript.enabled = false;
+            throwRocketmanScript.enabled = false;
+        }
+    }
+    private void FixedUpdate()
+    {
+        if (RocketmanCurrentState ==State.Still )
+        {
+            rb.velocity = new Vector3(0f, 0f, 0f);
+            rb.useGravity = false;
+            rb.isKinematic = true;
+        }
+        else if (RocketmanCurrentState == State.Dragged)
+        {
+            rb.useGravity = false;
+            rb.isKinematic = false;
+        }
+        else if (RocketmanCurrentState == State.Thrown || RocketmanCurrentState == State.Falling)
+        {
+            rb.useGravity = true;
+            rb.isKinematic = false;
+        }
+        else if (RocketmanCurrentState == State.Falling)
+        {
+            rb.velocity = new Vector3(0f,0f,0f);
+            rb.useGravity = true;
+            rb.isKinematic = false;
+        }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            Debug.Log("Game is over...");
+        }
     }
 }

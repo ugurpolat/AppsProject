@@ -7,7 +7,7 @@ public class ThrowRocketman : MonoBehaviour
 
     private Rigidbody rb;
     private float throwForce;
-    private bool didItThrown;
+    public bool didItThrown;
 
     private void OnEnable()
     {
@@ -17,7 +17,7 @@ public class ThrowRocketman : MonoBehaviour
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
-        throwForce = 10f;
+        throwForce = 50f;
     }
 
     // Update is called once per frame
@@ -27,7 +27,7 @@ public class ThrowRocketman : MonoBehaviour
         {
             if (!didItThrown)
             {
-                rb.AddRelativeForce(Vector3.forward * throwForce * 0.3f, ForceMode.Impulse);
+                rb.AddRelativeForce(new Vector3(0f,3f,1f) * throwForce * 0.3f, ForceMode.Impulse);
 
                 didItThrown = true;
             }
@@ -36,7 +36,7 @@ public class ThrowRocketman : MonoBehaviour
         {
             if (!didItThrown)
             {
-                rb.AddRelativeForce(Vector3.forward * throwForce * 0.3f,ForceMode.Impulse);
+                rb.AddRelativeForce(new Vector3(0f, 3f, 1f) * throwForce * 0.6f,ForceMode.Impulse);
                 didItThrown = true;
             }
         }
@@ -44,7 +44,7 @@ public class ThrowRocketman : MonoBehaviour
         {
             if (!didItThrown)
             {
-                rb.AddRelativeForce(Vector3.forward * throwForce * 0.3f, ForceMode.Impulse);
+                rb.AddRelativeForce(new Vector3(0f, 3f, 1f) * throwForce * 1f, ForceMode.Impulse);
                 didItThrown = true;
             }
         }
