@@ -8,7 +8,7 @@ public class Rocketman : MonoBehaviour
     private ThrowRocketman throwRocketmanScript;
 
     private Rigidbody rb;
-
+    private float speed = 5f;
     public static State RocketmanCurrentState;
     public static ThrowPower RocketmanThrowPower;
 
@@ -83,12 +83,14 @@ public class Rocketman : MonoBehaviour
         {
             rb.useGravity = true;
             rb.isKinematic = false;
+            
         }
         else if (RocketmanCurrentState == State.Falling)
         {
             rb.velocity = new Vector3(0f,0f,0f);
             rb.useGravity = true;
             rb.isKinematic = false;
+            
         }
     }
     private void OnCollisionEnter(Collision collision)

@@ -17,7 +17,7 @@ public class ThrowRocketman : MonoBehaviour
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
-        throwForce = 50f;
+        throwForce = 10f;
     }
 
     // Update is called once per frame
