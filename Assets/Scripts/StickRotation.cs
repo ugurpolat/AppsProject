@@ -5,12 +5,12 @@ using UnityEngine;
 public class StickRotation : MonoBehaviour
 {
     public Transform rocketman;
-    private float followSpeed;
+    //private float followSpeed;
     // Start is called before the first frame update
     void Start()
     {
         
-        followSpeed = 5f;
+        //followSpeed = 5f;
     }
 
     // Update is called once per frame

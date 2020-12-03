@@ -6,9 +6,14 @@ public class Rocketman : MonoBehaviour
 {
     private MoveRocketman moveRocketmanScript;
     private ThrowRocketman throwRocketmanScript;
+    private FlyingControl flyingControlScript;
 
-    private Rigidbody rb;
+    public Rigidbody rb;
+    public Touch touch;
+    private float xAngle = 90;
     private float speed = 5f;
+    private Animator anim;
+
     public static State RocketmanCurrentState;
     public static ThrowPower RocketmanThrowPower;
 
@@ -33,13 +38,14 @@ public class Rocketman : MonoBehaviour
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
+        anim = GetComponent<Animator>();
 
         RocketmanCurrentState = State.Still;
         RocketmanThrowPower = ThrowPower.NoPower;
 
         moveRocketmanScript = gameObject.GetComponent<MoveRocketman>();
         throwRocketmanScript = gameObject.GetComponent<ThrowRocketman>();
-
+        flyingControlScript = gameObject.GetComponent<FlyingControl>();
 
     }
 
@@ -51,13 +57,40 @@ public class Rocketman : MonoBehaviour
             RocketmanThrowPower = ThrowPower.NoPower;
             moveRocketmanScript.enabled = true;
             throwRocketmanScript.enabled = false;
+            flyingControlScript.enabled = false;
+            
         }
         else if (RocketmanCurrentState == State.Thrown)
         {
             
             moveRocketmanScript.enabled = false;
             throwRocketmanScript.enabled = true;
+            flyingControlScript.enabled = true;
             //stickMesh.SetActive(false);
+            if (throwRocketmanScript.didItThrown)
+            {
+                
+                if (Input.touchCount > 0)
+                {
+                    touch = Input.GetTouch(0);
+
+                    if (touch.phase == TouchPhase.Moved)
+                    {
+                        
+                        anim.SetInteger("State",1);
+                        Vector3 setAngle = new Vector3(xAngle, 0, 0);
+                        transform.eulerAngles = Vector3.Lerp(transform.rotation.eulerAngles,setAngle,Time.deltaTime * speed);
+                        
+
+                        
+                    }
+                    if (touch.phase == TouchPhase.Ended)
+                    {
+                        anim.SetInteger("State",2);
+                    }
+                }
+            }
+        
         }
         else if (RocketmanCurrentState == State.Falling)
         {
