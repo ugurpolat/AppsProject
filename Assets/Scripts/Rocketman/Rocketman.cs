@@ -8,7 +8,7 @@ public class Rocketman : MonoBehaviour
     private ThrowRocketman throwRocketmanScript;
     private FlyingControl flyingControlScript;
 
-    public Rigidbody rb;
+    private Rigidbody rb;
     public Touch touch;
     private float xAngle = 90;
     private float speed = 5f;
@@ -87,6 +87,7 @@ public class Rocketman : MonoBehaviour
                     if (touch.phase == TouchPhase.Ended)
                     {
                         anim.SetInteger("State",2);
+                        Rocketman.RocketmanCurrentState = State.Falling;
                     }
                 }
             }
