@@ -12,7 +12,7 @@ public class Rocketman : MonoBehaviour
     public Touch touch;
     private float xAngle = 90;
     private float speed = 5f;
-    private Animator anim;
+    public static Animator anim;
 
     public static State RocketmanCurrentState;
     public static ThrowPower RocketmanThrowPower;
@@ -78,10 +78,10 @@ public class Rocketman : MonoBehaviour
 
                     if (touch.phase == TouchPhase.Moved)
                     {
-                        
+                        Rocketman.RocketmanCurrentState = Rocketman.State.Thrown;
                         anim.SetInteger("State",1);
                         Vector3 setAngle = new Vector3(xAngle, 0, 0);
-                        transform.eulerAngles = Vector3.Lerp(transform.rotation.eulerAngles,setAngle,Time.deltaTime * speed);
+                        transform.eulerAngles = Vector3.Lerp(transform.rotation.eulerAngles,setAngle,Time.deltaTime * speed* 1.5f);
 
                         
 

@@ -5,25 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance = null;
+    
 
     [Header("Screen Setup Fields")]
     public GameObject gameOverScreen;
 
     [Header("Game Manager States")]
     public static bool GameIsOver;
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
+  
 
     // Start is called before the first frame update
     void Start()

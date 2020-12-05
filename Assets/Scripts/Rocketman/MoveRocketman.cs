@@ -24,7 +24,7 @@ public class MoveRocketman : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Rocketman.RocketmanCurrentState == Rocketman.State.Still || Rocketman.RocketmanCurrentState == Rocketman.State.Dragged)
+        if (Rocketman.RocketmanCurrentState == Rocketman.State.Still || Rocketman.RocketmanCurrentState == Rocketman.State.Dragged || Rocketman.RocketmanCurrentState == Rocketman.State.Thrown)
         {
             distance = Vector3.Distance(transform.position, centerPos);
             Debug.Log(distance);
@@ -39,29 +39,41 @@ public class MoveRocketman : MonoBehaviour
                            transform.position.x,
                            transform.position.y + touch.deltaPosition.y * speed,
                            transform.position.z + touch.deltaPosition.y * speed);
+                    if (transform.position.z > 0)
+                    {
+                        transform.position = centerPos;
+                    }
+                    else if (transform.position.z <-5f)
+                    {
+                        transform.position = new Vector3(transform.position.x, 4.85f, -5f);
+                    }
+                    
                     
                     if (distance > 1f && distance < 2.58f)
                     {
                         Rocketman.RocketmanThrowPower =Rocketman.ThrowPower.Slow;
-                        panelHowToPlay.SetActive(false);
+                        panelHowToPlay.SetActive(false); 
+                        Rocketman.anim.SetInteger("State", 0);
                     }
                     else if (distance >= 4.5f && distance < 5.5f)
                     {
                         Rocketman.RocketmanThrowPower = Rocketman.ThrowPower.Medium;
-                        panelHowToPlay.SetActive(false);
+                        panelHowToPlay.SetActive(false); 
+                        Rocketman.anim.SetInteger("State", 0);
                     }
-                    else if (distance >= 5.5f)
+                    else if (distance >= 5.5f && distance <= 7f)
                     {
                         Rocketman.RocketmanThrowPower = Rocketman.ThrowPower.Fast;
-                        panelHowToPlay.SetActive(false);
+                        panelHowToPlay.SetActive(false); 
+                        Rocketman.anim.SetInteger("State", 0);
 
                     }
-                    
+
 
                 }
                 if (touch.phase == TouchPhase.Ended)
                 {
-                    if (distance <= 0.05f)
+                    if (distance <= 1f)
                     {
                         Rocketman.RocketmanCurrentState = Rocketman.State.Still;
 
