@@ -7,7 +7,7 @@ public class FlyingControl : MonoBehaviour
     private Rocketman rocketmanScript;
     
 
-    private float baseSpeed = 0.1f;
+    private float baseSpeed = 0.2f;
     
     private void Start()
     {

@@ -10,8 +10,12 @@ public class GroundControl : MonoBehaviour
         if (other.gameObject.CompareTag("Rocketman"))
         {
 
+            
             GameManager.GameIsOver = true;
-
+            other.gameObject.GetComponent<FlyingControl>().enabled = false;
+            other.gameObject.GetComponent<ThrowRocketman>().enabled = false;
+            other.gameObject.GetComponent<Rocketman>().enabled = false;
+            other.gameObject.GetComponent<MoveRocketman>().enabled = false;
 
         }
     }

@@ -90,7 +90,8 @@ public class Rocketman : MonoBehaviour
                     if (touch.phase == TouchPhase.Ended)
                     {
                         anim.SetInteger("State",2);
-                        Rocketman.RocketmanCurrentState = State.Falling;
+                        Rocketman.RocketmanCurrentState = Rocketman.State.Falling;
+
                     }
                 }
             }
@@ -99,8 +100,9 @@ public class Rocketman : MonoBehaviour
         else if (RocketmanCurrentState == State.Falling)
         {
             RocketmanThrowPower = ThrowPower.NoPower;
-            moveRocketmanScript.enabled = false;
+            moveRocketmanScript.enabled = true;
             throwRocketmanScript.enabled = false;
+            flyingControlScript.enabled = true;
         }
     }
     private void FixedUpdate()
@@ -125,6 +127,7 @@ public class Rocketman : MonoBehaviour
         else if (RocketmanCurrentState == State.Falling)
         {
             rb.velocity = new Vector3(0f,0f,0f);
+            Debug.Log("Falling");
             rb.useGravity = true;
             rb.isKinematic = false;
             
