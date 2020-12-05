@@ -17,7 +17,9 @@ public class Rocketman : MonoBehaviour
     public static State RocketmanCurrentState;
     public static ThrowPower RocketmanThrowPower;
 
-    public GameObject stickMesh;
+    //public GameObject stickMesh;
+    
+
 
     public enum State
     {
@@ -80,6 +82,7 @@ public class Rocketman : MonoBehaviour
                         anim.SetInteger("State",1);
                         Vector3 setAngle = new Vector3(xAngle, 0, 0);
                         transform.eulerAngles = Vector3.Lerp(transform.rotation.eulerAngles,setAngle,Time.deltaTime * speed);
+
                         
 
                         

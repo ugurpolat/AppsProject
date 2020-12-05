@@ -10,7 +10,7 @@ public class MoveRocketman : MonoBehaviour
 
     private float distance;
     private Vector3 centerPos = new Vector3(0f,10f,0f);
-    
+    public GameObject panelHowToPlay;
 
     private float speed;
     // Start is called before the first frame update
@@ -39,19 +39,25 @@ public class MoveRocketman : MonoBehaviour
                            transform.position.x,
                            transform.position.y + touch.deltaPosition.y * speed,
                            transform.position.z + touch.deltaPosition.y * speed);
-
+                    
                     if (distance > 1f && distance < 2.58f)
                     {
                         Rocketman.RocketmanThrowPower =Rocketman.ThrowPower.Slow;
+                        panelHowToPlay.SetActive(false);
                     }
                     else if (distance >= 4.5f && distance < 5.5f)
                     {
                         Rocketman.RocketmanThrowPower = Rocketman.ThrowPower.Medium;
+                        panelHowToPlay.SetActive(false);
                     }
                     else if (distance >= 5.5f)
                     {
                         Rocketman.RocketmanThrowPower = Rocketman.ThrowPower.Fast;
+                        panelHowToPlay.SetActive(false);
+
                     }
+                    
+
                 }
                 if (touch.phase == TouchPhase.Ended)
                 {
