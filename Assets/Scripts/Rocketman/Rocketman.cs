@@ -84,10 +84,7 @@ public class Rocketman : MonoBehaviour
                         anim.SetInteger("State",1);
                         Vector3 setAngle = new Vector3(xAngle, 0, 0);
                         transform.eulerAngles = Vector3.Lerp(transform.rotation.eulerAngles,setAngle,Time.deltaTime * speed* 1.5f);
-
-                        
-
-                        
+                    
                     }
                     if (touch.phase == TouchPhase.Ended)
                     {
@@ -102,9 +99,31 @@ public class Rocketman : MonoBehaviour
         else if (RocketmanCurrentState == State.Falling)
         {
             RocketmanThrowPower = ThrowPower.NoPower;
-            moveRocketmanScript.enabled = true;
+            moveRocketmanScript.enabled = false;
             throwRocketmanScript.enabled = true;
             flyingControlScript.enabled = true;
+            transform.Rotate(new Vector3(90f, 0, 0) * Time.deltaTime * 15f);
+ 
+                if (Input.touchCount > 0)
+                {
+                    touch = Input.GetTouch(0);
+
+                    if (touch.phase == TouchPhase.Moved)
+                    {
+                        Rocketman.RocketmanCurrentState = Rocketman.State.Thrown;
+                        anim.SetInteger("State", 1);
+                        Vector3 setAngle = new Vector3(xAngle, 0, 0);
+                        transform.eulerAngles = Vector3.Lerp(transform.rotation.eulerAngles, setAngle, Time.deltaTime * speed * 1.5f);
+
+                    }
+                    if (touch.phase == TouchPhase.Ended)
+                    {
+                        anim.SetInteger("State", 2);
+                        Rocketman.RocketmanCurrentState = Rocketman.State.Falling;
+
+                    }
+                }
+            
         }
     }
     private void FixedUpdate()

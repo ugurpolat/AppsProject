@@ -28,7 +28,7 @@ public class ThrowRocketman : MonoBehaviour
             if (!didItThrown)
             {
                 rb.AddRelativeForce(new Vector3(0f,3f,1f) * throwForce * 0.3f, ForceMode.Impulse);
-
+                transform.Rotate(new Vector3(90f, 0, 0));
                 didItThrown = true;
             }
         }
@@ -37,6 +37,7 @@ public class ThrowRocketman : MonoBehaviour
             if (!didItThrown)
             {
                 rb.AddRelativeForce(new Vector3(0f, 3f, 1f) * throwForce * 0.6f,ForceMode.Impulse);
+                transform.Rotate(new Vector3(90f, 0, 0));
                 didItThrown = true;
             }
         }
@@ -45,6 +46,7 @@ public class ThrowRocketman : MonoBehaviour
             if (!didItThrown)
             {
                 rb.AddRelativeForce(new Vector3(0f, 3f, 1f) * throwForce * 1f, ForceMode.Impulse);
+                transform.Rotate(new Vector3(90f, 0, 0));
                 didItThrown = true;
             }
         }

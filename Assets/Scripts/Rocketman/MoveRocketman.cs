@@ -27,7 +27,7 @@ public class MoveRocketman : MonoBehaviour
         if (Rocketman.RocketmanCurrentState == Rocketman.State.Still || Rocketman.RocketmanCurrentState == Rocketman.State.Dragged)
         {
             distance = Vector3.Distance(transform.position, centerPos);
-
+            
             if (Input.touchCount > 0)
             {
                 touch = Input.GetTouch(0);
@@ -82,6 +82,7 @@ public class MoveRocketman : MonoBehaviour
                     else
                     {
                         Rocketman.RocketmanCurrentState = Rocketman.State.Thrown;
+                        
                     }
 
                 }
