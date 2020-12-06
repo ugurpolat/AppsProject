@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CylinderControl : MonoBehaviour
 {
-    public float jumpForce = 100f;
+    public float jumpForce = 5f;
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("Rocketman"))

@@ -54,6 +54,8 @@ public class Rocketman : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(RocketmanCurrentState);
+
         if (RocketmanCurrentState == State.Still)
         {
             RocketmanThrowPower = ThrowPower.NoPower;
@@ -101,7 +103,7 @@ public class Rocketman : MonoBehaviour
         {
             RocketmanThrowPower = ThrowPower.NoPower;
             moveRocketmanScript.enabled = true;
-            throwRocketmanScript.enabled = false;
+            throwRocketmanScript.enabled = true;
             flyingControlScript.enabled = true;
         }
     }

@@ -97,9 +97,9 @@ public class MoveRocketman : MonoBehaviour
                     Rocketman.anim.SetInteger("State", 1);
 
                     transform.position = new Vector3(
-                           transform.position.x,
+                           transform.position.x + touch.deltaPosition.y * speed,
                            transform.position.y + touch.deltaPosition.y * speed,
-                           transform.position.z );
+                           transform.position.z);
                     
 
 
